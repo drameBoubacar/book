@@ -1,7 +1,14 @@
 import express from 'express';
 import route from './route';
+import mongoose from 'mongoose';
+
 
 let app = express();
+
+
+mongoose.connect('mongodb://localhost:27017/book', () => {
+    console.log('DB initialized ...');
+})
 
 app.use('/simplonBook', route)
 
