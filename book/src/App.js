@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import showBook from './components/showBook';
+
 
 class App extends Component {
+  constructor(){
+    super();
+        this.state = {
+            book : []
+        }
+}
+componentDidMount() {
+    fetch('http://localhost:3005/simplonBook')
+    .then(res => res.json())
+    .then(body =>{
+      this.setState({
+          book : body
+      })
+    })
+    .catch(err => {throw err})
+  }
   render() {
     return (
       <div className="App">
@@ -11,7 +27,26 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <form action="http://localhost:3333/simplonBook/add" method="POST">
+          <input type="text" name="titre"/>
+          <input type="text" name="auteur"/>
+          <input type="text" name="année_de_publication"/>
+          <input type="text" name="pages"/>
+          <input type="text" name="date_de_creation"/>
+          <button type="submit">Go</button>
+          </form>
 
+          {this.state.book.map(book => {
+                return <ul>
+                          <li> {book.titre}</li>
+                          <li> {book.auteur}</li>
+                          <li> {book.année_de_publication}</li>
+                          <li> {book.pages}</li>
+                          <li> {book.date_de_creation}</li>
+                       </ul>
+                      
+              }
+            )}  
       </div>
     );
   }

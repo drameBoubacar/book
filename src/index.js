@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost:27017/book', () => {
     console.log('DB initialized ...');
 })
 
+app.use(express.urlencoded({ extended : true }))
 app.use('/simplonBook', route)
 
 app.listen(3333, () => {

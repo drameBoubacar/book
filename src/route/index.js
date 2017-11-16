@@ -4,8 +4,8 @@ import Book from '../model/book';
 
 const api = express.Router();
 
-api.post('/add', (request, response) => {
-    const newBook = new Book(request.body);
+api.post('/add', (req, res) => {
+    const newBook = new Book(req.body);
     newBook.save((err, book) => {
       if(err){
         return(err)
@@ -19,7 +19,7 @@ api.get('/', (req, res) => {
         if(err){
             res.send(err)
         }
-        res.json(book)
+        res.redirect("http://localhost:3000/");
     })
 })
 
