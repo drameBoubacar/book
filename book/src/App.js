@@ -4,14 +4,14 @@ import './App.css';
 
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
         this.state = {
             book : []
         }
 }
 componentDidMount() {
-    fetch('http://localhost:3005/simplonBook')
+    fetch('http://localhost:3333/simplonBook')
     .then(res => res.json())
     .then(body =>{
       this.setState({
@@ -27,7 +27,7 @@ componentDidMount() {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <form action="http://localhost:3333/simplonBook/add" method="POST">
+        <form method="POST" action="http://localhost:3333/simplonBook/add">
           <input type="text" name="titre"/>
           <input type="text" name="auteur"/>
           <input type="text" name="année_de_publication"/>
@@ -37,12 +37,12 @@ componentDidMount() {
           </form>
 
           {this.state.book.map(book => {
-                return <ul>
-                          <li> {book.titre}</li>
-                          <li> {book.auteur}</li>
-                          <li> {book.année_de_publication}</li>
-                          <li> {book.pages}</li>
-                          <li> {book.date_de_creation}</li>
+                return  <ul>
+                          <li>titre{book.titre}</li>
+                          <li>{book.auteur}</li>
+                          <li>{book.année_de_publication}</li>
+                          <li>{book.pages}</li>
+                          <li>{book.date_de_creation}</li>
                        </ul>
                       
               }
