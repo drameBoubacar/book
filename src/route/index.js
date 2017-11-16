@@ -5,10 +5,22 @@ import Book from '../model/book';
 const api = express.Router();
 
 api.post('/add', (request, response) => {
-    const newFilm = new Film(request.body);
-    newFilm.save((err, film) => {
-      if(err) return console.log(err);
+    const newBook = new Book(request.body);
+    newBook.save((err, book) => {
+      if(err){
+        return(err)
+      }
+      res.json({message: 'book saved'})
     });
 });
+
+api.get('/', (req, res) => {
+    Book.find((err, book) => {
+        if(err){
+            res.send(err)
+        }
+        res.json(book)
+    })
+})
 
 export default api;
