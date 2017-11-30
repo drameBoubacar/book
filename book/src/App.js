@@ -37,7 +37,7 @@ componentDidMount() {
           </form>
 
           {this.state.book.map(book => {
-                return  <ul>
+                return  <ul className="infos" key={book._id}>
                           <li>titre{book.titre}</li>
                           <li>{book.auteur}</li>
                           <li>{book.année_de_publication}</li>

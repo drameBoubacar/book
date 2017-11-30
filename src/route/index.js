@@ -19,7 +19,7 @@ api.get('/', (req, res) => {
         if(err){
             res.send(err)
         }
-        res.redirect("http://localhost:3000/");
+        res.json(book);
     })
 })
 
